@@ -27,18 +27,13 @@ Caso de Teste 03 - Adicionar Produto no Carrinho
     [Documentation]    Esse teste verifica a adição de um produto no carrinho de compras 
     [Tags]             adicionar_carrinho     
     Given que estou na home page da Amazon.com.br
-    When Usuário digita o nome de produto "Xbox Series S" no campo de pesquisa
-    And Clicar no botão de pesquisa
-    And adicionar o produto "Xbox Series S" no carrinho
+    When adicionar o produto "Xbox Series S" no carrinho
     Then o produto "Console Xbox Series S" deve ser mostrado no carrinho
 
 Caso de Teste 04 - Remover Produto do Carrinho
     [Documentation]    Esse teste verifica a remoção de um produto no carrinho de compras 
     [Tags]             remover_carrinho 
     Given que estou na home page da Amazon.com.br
-    When Usuário digita o nome de produto "Xbox Series S" no campo de pesquisa
-    And Clicar no botão de pesquisa
-    And adicionar o produto "Xbox Series S" no carrinho
     And existe o produto "Console Xbox Series S" no carrinho
-    And remover o produto "Console Xbox Series S" do carrinho
+    When remover o produto "Console Xbox Series S" do carrinho
     Then o carrinho deve ficar vazio

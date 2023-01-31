@@ -44,6 +44,8 @@ Resultado da pesquisa ser exibido, listando o produto "${PRODUCT}"
     Wait Until Page Contains Element    locator=(//span[contains(.,'${PRODUCT}')])[2]
 
 adicionar o produto "${PRODUCT}" no carrinho
+    Usuário digita o nome de produto "Xbox Series S" no campo de pesquisa
+    Clicar no botão de pesquisa
     Wait Until Page Contains Element    locator=//img[contains(@alt,'${PRODUCT}')]
     Click Element    locator=//img[contains(@alt,'${PRODUCT}')]
     Wait Until Page Contains Element    locator=add-to-cart-button
@@ -55,6 +57,7 @@ o produto "${PRODUCT}" deve ser mostrado no carrinho
     Wait Until Page Contains Element    locator=//span[@class='a-truncate-cut'][contains(.,'${PRODUCT}')]
 
 existe o produto "${PRODUCT}" no carrinho
+    adicionar o produto "Xbox Series S" no carrinho
     Click Element    locator=nav-cart-text-container
     Wait Until Page Contains Element    locator=//span[@class='a-truncate-cut'][contains(.,'${PRODUCT}')]
 
