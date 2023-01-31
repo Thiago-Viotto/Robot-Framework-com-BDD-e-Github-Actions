@@ -5,11 +5,8 @@ Library    SeleniumLibrary
 ${URL}    https://www.amazon.com.br
 ${BROWSER}    chrome
 ${EXECUTABLE_PATH}    C:\Program Files\chrome driver\chromedriver
+${ELETRONICS_HEADER}    xpath://h1[contains(.,'Eletrônicos e Tecnologia')]
 ${ELETRONICS_MENU}    xpath://a[@href='/Eletronicos-e-Tecnologia/b/?ie=UTF8&node=16209062011&ref_=nav_cs_electronics'][contains(.,'Eletrônicos')]
-${COMPUTERS_CATEGORY}    xpath://img[contains(@alt,'Computadores e Informática')]
-${SEARCH_INPUT}    xpath://input[contains(@type,'text')]
-${SEARCH_BUTTON}    xpath://input[contains(@type,'submit')]
-${PRODUCT}    xpath://span[@class='a-size-base-plus a-color-base a-text-normal'][contains(.,'Xbox Series S - Pacote Fortnite, Rocket League e Fall Guys')]
 
 *** Keywords ***
 Acessar a home page do site Amazon.com.br
@@ -21,23 +18,24 @@ Acessar a home page do site Amazon.com.br
 Usuário entra no menu "Eletrônicos"
     Click Element    ${ELETRONICS_MENU}
 
-Mensagem do título da página ser "Eletrônicos e Tecnologia | Amazon.com.br"
-    Title Should Be    Eletrônicos e Tecnologia | Amazon.com.br
+Mensagem do título da página ser "${TITLE}"
+    Title Should Be    ${TITLE}
     
-Mensagem "${MENSAGEM_EXIBIDA}" ser exibida
-    Page Should Contain    ${MENSAGEM_EXIBIDA}
+Mensagem "Eletrônicos e Tecnologia" ser exibida
+    Wait Until Element Is Visible    ${ELETRONICS_HEADER}
 
-Mensagem de categoria ser "Computadores e Informática"
-    Wait Until Page Contains Element    ${COMPUTERS_CATEGORY}
+Mensagem de categoria ser "${COMPUTERS_CATEGORY}"
+    Element Should Be Visible    //img[contains(@alt,'${COMPUTERS_CATEGORY}')]
 
-Usuário digita o nome de produto "Xbox Series S" no campo de pesquisa
-    Input Text    ${SEARCH_INPUT}    Xbox Series S
+Usuário digita o nome de produto "${PRODUCT}" no campo de pesquisa
+    Input Text    locator=twotabsearchtextbox    text=${PRODUCT}
 
 Clicar no botão de pesquisa
-    Click Button    ${SEARCH_BUTTON}
+    Click Button    locator=nav-search-submit-button
 
-Resultado da pesquisa ser exibido, listando o produto pesquisado
-    Wait Until Page Contains Element    ${PRODUCT}
+Resultado da pesquisa ser exibido, listando o produto "${PRODUCT}"
+    Wait Until Page Contains Element    locator=(//span[contains(.,'${PRODUCT}')])[2]
 
 Fechar o navegador
+    Capture Page Screenshot
     Close Browser    
