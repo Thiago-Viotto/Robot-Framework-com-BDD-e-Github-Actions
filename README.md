@@ -2,16 +2,21 @@
  
 Projeto pessoal aplicando o Robot Framework com Selenium e BDD
 
+Site de testes do Robot
 ![168a8b03-6df1-440e-ae5f-d10bc86be730](https://user-images.githubusercontent.com/30843151/214155124-adb2976f-f837-4c91-8e80-a1f82524e7fe.gif)
+
+Site da Amazon
+![b2b0fc66-ad52-4fa9-aeed-13ec3e87a94e](https://user-images.githubusercontent.com/30843151/215855049-b043dbb0-e993-43cb-a66a-0f5ee73a163e.gif)
 
 ## Setup
 - `git clone git@github.com:Thiago-Viotto/Projeto-Pessoal-Robot-Framework.git`
 - Instalar o ChromeDriver da mesma versão do seu Chrome https://chromedriver.chromium.org/downloads
+- No arquivo de resource, alterar a varíavel EXECUTABLE_PATH para o caminho do seu ChromeDriver
 - Instalar o python https://www.python.org/downloads/
 
 ## Execução
 - `robot MeuTeste.robot`
-
+- `robot .\amazonTeste.robot`
 
 ## Contato
 - Email: thiagohenriqueviotto1@gmail.com

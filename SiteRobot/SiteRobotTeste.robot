@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    resource.robot
+Resource    resourceSiteRobotTeste.robot
 Test Setup    Acessar a página do blog
 Test Teardown    Fechar o navegador
 
