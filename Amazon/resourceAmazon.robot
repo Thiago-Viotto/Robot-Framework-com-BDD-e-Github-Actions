@@ -25,13 +25,15 @@ que estou na home page da Amazon.com.br
 Usuário entra no menu "Eletrônicos"
     Click Element    ${ELETRONICS_MENU}
 
-Mensagem do título da página ser "${TITLE}"
+Mensagem do título da página ser
+    [Arguments]    ${TITLE}
     Title Should Be    ${TITLE}
     
 Mensagem "Eletrônicos e Tecnologia" ser exibida
     Wait Until Element Is Visible    ${ELETRONICS_HEADER}
 
-Mensagem de categoria ser "${COMPUTERS_CATEGORY}"
+Mensagem de categoria ser
+    [Arguments]    ${COMPUTERS_CATEGORY}
     Element Should Be Visible    //img[contains(@alt,'${COMPUTERS_CATEGORY}')]
 
 Usuário digita o nome de produto "${PRODUCT}" no campo de pesquisa
@@ -40,7 +42,8 @@ Usuário digita o nome de produto "${PRODUCT}" no campo de pesquisa
 Clicar no botão de pesquisa
     Click Button    locator=nav-search-submit-button
 
-Resultado da pesquisa ser exibido, listando o produto "${PRODUCT}"
+Resultado da pesquisa ser exibido, listando o produto
+    [Arguments]    ${PRODUCT}
     Wait Until Page Contains Element    locator=(//span[contains(.,'${PRODUCT}')])[2]
 
 adicionar o produto "${PRODUCT}" no carrinho

@@ -11,9 +11,9 @@ Caso de teste 1: Acesso ao menu "Eletrônicos"
     Given que estou na home page da Amazon.com.br
     When Usuário entra no menu "Eletrônicos"
     Then Mensagem "Eletrônicos e Tecnologia" ser exibida
-    Then Mensagem do título da página ser "Eletrônicos e Tecnologia | Amazon.com.br"
-    Then Mensagem de categoria ser "Computadores e Informática"
-    Then Mensagem de categoria ser "Tablets"
+    Then Mensagem do título da página ser     Eletrônicos e Tecnologia | Amazon.com.br
+    Then Mensagem de categoria ser    Computadores e Informática
+    Then Mensagem de categoria ser    Tablets
 
 Caso de teste 2: Pesquisa de um produto
     [Documentation]    Acessa o site da Amazon e pesquisa por um produto
@@ -21,7 +21,7 @@ Caso de teste 2: Pesquisa de um produto
     Given que estou na home page da Amazon.com.br
     And Usuário digita o nome de produto "Xbox Series S" no campo de pesquisa
     When Clicar no botão de pesquisa
-    Then Resultado da pesquisa ser exibido, listando o produto "Console Xbox Series S" 
+    Then Resultado da pesquisa ser exibido, listando o produto    Console Xbox Series S 
 
 Caso de Teste 03 - Adicionar Produto no Carrinho
     [Documentation]    Esse teste verifica a adição de um produto no carrinho de compras 
