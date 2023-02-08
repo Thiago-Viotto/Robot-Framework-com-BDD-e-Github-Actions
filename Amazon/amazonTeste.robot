@@ -44,3 +44,10 @@ Caso de Teste 05 - Acessar ofertas do dia
     Given que estou na home page da Amazon.com.br
     When clicar em    Ofertas do Dia
     Then o texto de 'Ofertas e Promoções' deverá ser exibido
+
+Caso de Teste 06 - Acessar mais vendidos
+    [Documentation]    Esse teste verifica a tela de mais vendidos
+    [Tags]             mais_vendidos 
+    Given que estou na home page da Amazon.com.br
+    When clicar em     Mais Vendidos
+    Then o texto de 'Mais vendidos' deverá ser exibido
