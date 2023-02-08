@@ -93,6 +93,16 @@ Seção de comentários deverá ser exibida no final da tela
     Wait Until Page Contains Element    locator=${COMMENTS_TITLE}
     Scroll Until Element Is Visible    locator=${COMMENTS_TITLE}
     Wait Until Page Contains Element    locator=${COMMENTS_SECTION}
+
+Clicar em adicionar á lista
+    ${ADD_TO_LIST_LABEL}    Set Variable    //a[contains(.,'Adicionar à Lista')]
+    Click Element    locator=${ADD_TO_LIST_LABEL}
+
+Tela de login ser exibida
+    ${LOGIN_TITLE}=    Set Variable    //h1[contains(.,'Fazer login')]
+    ${EMAIL_INPUT}=    Set Variable    //input[@type='email'][contains(@id,'email')]
+    Wait Until Page Contains Element    locator=${LOGIN_TITLE}
+    Page Should Contain Element    locator=${LOGIN_TITLE}
     
 Fechar o navegador
     Close Browser    

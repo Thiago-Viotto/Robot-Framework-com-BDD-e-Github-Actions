@@ -62,3 +62,15 @@ Caso de Teste 07 - Acessar seção de comentários de um produto
     When Clicar no produto    NINHO Fases 1+ 800g
     Then Tela do produto "NINHO Fases 1+ 800g" deverá ser exibida
     And Seção de comentários deverá ser exibida no final da tela
+
+Caso de Teste 08 - Acessar tela de login ao tentar adicionar á lista deslogado
+    [Documentation]    Esse teste verifica se a tela de login aparece após usuário tentar adicionar produto a lista deslogado
+    [Tags]             adicionar_lista
+    Given que estou na home page da Amazon.com.br
+    And Usuário digita o nome de produto "JBL, Fone de Ouvido Bluetooth, Tune 510BT - Azul" no campo de pesquisa
+    When Clicar no botão de pesquisa
+    Then Resultado da pesquisa ser exibido, listando o produto    JBL, Fone de Ouvido Bluetooth, Tune 510BT - Azul
+    When Clicar no produto    JBL, Fone de Ouvido Bluetooth, Tune 510BT - Azul
+    Then Tela do produto "JBL, Fone de Ouvido Bluetooth, Tune 510BT - Azul" deverá ser exibida
+    When Clicar em adicionar á lista
+    Then Tela de login ser exibida
