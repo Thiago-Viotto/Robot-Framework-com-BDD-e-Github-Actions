@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.9.7 on win32)" generated="20230208 15:35:13.451" rpa="false" schemaversion="3">
+<suite id="s1" name="Robot Interactive Console" source="c:\Users\thiag\.vscode\extensions\robocorp.robotframework-lsp-1.9.0\src\robotframework_ls\vendored\robotframework_interactive\robot_interactive_console.robot">
+<test id="s1-t1" name="Default Task/Test" line="5">
+<kw name="Interpreter Main Loop" library="MainLoop">
+<kw name="[Documentation] Esse teste verifica a tela de ofertas do dia">
+<msg timestamp="20230208 15:35:16.161" level="FAIL">No keyword with name '[Documentation] Esse teste verifica a tela de ofertas do dia' found.</msg>
+<status status="FAIL" starttime="20230208 15:35:16.161" endtime="20230208 15:35:16.161"/>
+</kw>
+<kw name="[Tags] ofertas_dia">
+<status status="NOT RUN" starttime="20230208 15:35:16.163" endtime="20230208 15:35:16.163"/>
+</kw>
+<kw name="Given que estou na home page da Amazon.com.br">
+<status status="NOT RUN" starttime="20230208 15:35:16.167" endtime="20230208 15:35:16.167"/>
+</kw>
+<kw name="When clicar em 'Ofertas do dia'">
+<status status="NOT RUN" starttime="20230208 15:35:16.169" endtime="20230208 15:35:16.169"/>
+</kw>
+<kw name="Então o texto de 'Ofertas e Promoções' deverá ser exibido">
+<status status="NOT RUN" starttime="20230208 15:35:16.174" endtime="20230208 15:35:16.174"/>
+</kw>
+<status status="PASS" starttime="20230208 15:35:13.752" endtime="20230208 15:37:17.228"/>
+</kw>
+<status status="PASS" starttime="20230208 15:35:13.751" endtime="20230208 15:37:17.229"/>
+</test>
+<status status="PASS" starttime="20230208 15:35:13.451" endtime="20230208 15:37:17.230"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Robot Interactive Console">Robot Interactive Console</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

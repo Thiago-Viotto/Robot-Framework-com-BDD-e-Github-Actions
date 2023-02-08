@@ -71,5 +71,13 @@ remover o produto "${PRODUCT}" do carrinho
 o carrinho deve ficar vazio
     Wait Until Page Contains Element    locator=${LABEL_NONE_CART}
     
+clicar em
+    [Arguments]    ${OPTION_NAME}
+    Wait Until Page Contains Element    locator=//a[contains(.,'${OPTION_NAME}')]
+    Click Element    locator=//a[contains(.,'${OPTION_NAME}')]
+
+o texto de '${OFFERS_AND_PROMOTIONS}' deverá ser exibido
+    Wait Until Page Contains Element    locator=//h1[@class='a-size-extra-large a-spacing-micro'][contains(.,'${OFFERS_AND_PROMOTIONS}')]
+
 Fechar o navegador
     Close Browser    

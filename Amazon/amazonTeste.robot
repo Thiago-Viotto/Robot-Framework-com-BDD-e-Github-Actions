@@ -37,3 +37,10 @@ Caso de Teste 04 - Remover Produto do Carrinho
     And existe o produto "Console Xbox Series S" no carrinho
     When remover o produto "Console Xbox Series S" do carrinho
     Then o carrinho deve ficar vazio
+
+Caso de Teste 05 - Acessar ofertas do dia
+    [Documentation]    Esse teste verifica a tela de ofertas do dia
+    [Tags]             ofertas_dia
+    Given que estou na home page da Amazon.com.br
+    When clicar em    Ofertas do Dia
+    Then o texto de 'Ofertas e Promoções' deverá ser exibido
