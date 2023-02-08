@@ -1,5 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
+Resource    ../helpers/utils.robot
 
 *** Variables ***
 ${URL}    https://www.amazon.com.br
@@ -79,5 +80,19 @@ clicar em
 o texto de '${OFFERS_AND_PROMOTIONS}' deverá ser exibido
     Wait Until Page Contains Element    locator=//span[contains(.,'${OFFERS_AND_PROMOTIONS}')]
 
+Clicar no produto
+    [Arguments]    ${PRODUCT_NAME}
+    Click Element    locator=//img[@alt='${PRODUCT_NAME}']
+
+Tela do produto "${PRODUCT_NAME}" deverá ser exibida
+    Wait Until Page Contains Element    locator=//span[@class='a-size-large product-title-word-break'][contains(.,'${PRODUCT_NAME}')]
+
+Seção de comentários deverá ser exibida no final da tela
+    ${COMMENTS_TITLE}=    Set Variable    //h3[contains(.,'Principais avaliações do Brasil')]
+    ${COMMENTS_SECTION}=    Set Variable    //div[contains(@class,'card-padding')]
+    Wait Until Page Contains Element    locator=${COMMENTS_TITLE}
+    Scroll Until Element Is Visible    locator=${COMMENTS_TITLE}
+    Wait Until Page Contains Element    locator=${COMMENTS_SECTION}
+    
 Fechar o navegador
     Close Browser    

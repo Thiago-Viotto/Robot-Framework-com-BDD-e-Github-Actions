@@ -51,3 +51,14 @@ Caso de Teste 06 - Acessar mais vendidos
     Given que estou na home page da Amazon.com.br
     When clicar em     Mais Vendidos
     Then o texto de 'Mais vendidos' deverá ser exibido
+
+Caso de Teste 07 - Acessar seção de comentários de um produto
+    [Documentation]    Esse teste verifica a seção de comentários de um produto
+    [Tags]             comentários
+    Given que estou na home page da Amazon.com.br
+    And Usuário digita o nome de produto "NINHO Fases 1+ 800g" no campo de pesquisa
+    When Clicar no botão de pesquisa
+    Then Resultado da pesquisa ser exibido, listando o produto    NINHO Fases 1+ 800g
+    When Clicar no produto    NINHO Fases 1+ 800g
+    Then Tela do produto "NINHO Fases 1+ 800g" deverá ser exibida
+    And Seção de comentários deverá ser exibida no final da tela
