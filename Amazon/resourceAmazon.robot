@@ -78,7 +78,7 @@ clicar em
     Click Element    locator=//a[contains(.,'${OPTION_NAME}')]
 
 o texto de '${OFFERS_AND_PROMOTIONS}' deverá ser exibido
-    Wait Until Page Contains Element    locator=//span[contains(.,'${OFFERS_AND_PROMOTIONS}')]
+    Wait Until Page Contains    ${OFFERS_AND_PROMOTIONS}
 
 Clicar no produto
     [Arguments]    ${PRODUCT_NAME}
