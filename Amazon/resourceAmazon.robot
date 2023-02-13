@@ -1,5 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
+Resource    ../helpers/utils.robot
 
 *** Variables ***
 ${URL}    https://www.amazon.com.br
@@ -70,6 +71,38 @@ remover o produto "${PRODUCT}" do carrinho
 
 o carrinho deve ficar vazio
     Wait Until Page Contains Element    locator=${LABEL_NONE_CART}
+    
+clicar em
+    [Arguments]    ${OPTION_NAME}
+    Wait Until Page Contains Element    locator=//a[contains(.,'${OPTION_NAME}')]
+    Click Element    locator=//a[contains(.,'${OPTION_NAME}')]
+
+o texto de '${OFFERS_AND_PROMOTIONS}' deverá ser exibido
+    Wait Until Page Contains    ${OFFERS_AND_PROMOTIONS}
+
+Clicar no produto
+    [Arguments]    ${PRODUCT_NAME}
+    Click Element    locator=//img[@alt='${PRODUCT_NAME}']
+
+Tela do produto "${PRODUCT_NAME}" deverá ser exibida
+    Wait Until Page Contains Element    locator=//span[@class='a-size-large product-title-word-break'][contains(.,'${PRODUCT_NAME}')]
+
+Seção de comentários deverá ser exibida no final da tela
+    ${COMMENTS_TITLE}=    Set Variable    //h3[contains(.,'Principais avaliações do Brasil')]
+    ${COMMENTS_SECTION}=    Set Variable    //div[contains(@class,'card-padding')]
+    Wait Until Page Contains Element    locator=${COMMENTS_TITLE}
+    Scroll Until Element Is Visible    locator=${COMMENTS_TITLE}
+    Wait Until Page Contains Element    locator=${COMMENTS_SECTION}
+
+Clicar em adicionar á lista
+    ${ADD_TO_LIST_LABEL}    Set Variable    //a[contains(.,'Adicionar à Lista')]
+    Click Element    locator=${ADD_TO_LIST_LABEL}
+
+Tela de login ser exibida
+    ${LOGIN_TITLE}=    Set Variable    //h1[contains(.,'Fazer login')]
+    ${EMAIL_INPUT}=    Set Variable    //input[@type='email'][contains(@id,'email')]
+    Wait Until Page Contains Element    locator=${LOGIN_TITLE}
+    Page Should Contain Element    locator=${LOGIN_TITLE}
     
 Fechar o navegador
     Close Browser    
