@@ -23,6 +23,11 @@ add a created user in ServerRest
     ...        administrador=true
     create session in ServerRest
     ${response}    POST On Session    alias=add_user_session    url=/usuarios    json=${body}    expected_status=${expected_status_code}
+
+    IF  ${response.status_code} == 201
+        Set Test Variable    ${USER_ID}    ${response.json()["_id"]}
+    END
+    
     Set Test Variable    ${RESPONSE}    ${response.json()}
 
 check if user was registered with successfull
@@ -43,3 +48,15 @@ create session in ServerRest
     ...        accept=application/json
     ...        Content-Type=application/json
     Create Session    alias=add_user_session    url=${API_URL}    headers=${headers}
+
+query user data
+    ${response_query}    GET On Session    alias=add_user_session    url=/usuarios/${USER_ID}
+    Set Test Variable    ${RESP_QUERY}    ${response_query.json()}
+
+check returned data
+    Log    ${RESP_QUERY}
+    Dictionary Should Contain Item    ${RESP_QUERY}    nome             Fulano da Silva
+    Dictionary Should Contain Item    ${RESP_QUERY}    email            ${EMAIL_TESTING}
+    Dictionary Should Contain Item    ${RESP_QUERY}    password         teste
+    Dictionary Should Contain Item    ${RESP_QUERY}    administrador    true
+    Dictionary Should Contain Item    ${RESP_QUERY}    _id              ${USER_ID}
