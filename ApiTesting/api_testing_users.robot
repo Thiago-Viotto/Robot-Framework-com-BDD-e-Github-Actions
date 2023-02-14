@@ -16,3 +16,8 @@ Scenario 02: Add a already registered user
     And add user again    
     Then check if user was not registered 
     
+Scenario 03: Find a user with id
+    Given add a new user
+    When add a created user in ServerRest    email=${EMAIL_TESTING}    expected_status_code=201
+    And query user data
+    Then check returned data
