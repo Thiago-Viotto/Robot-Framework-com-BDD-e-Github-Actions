@@ -7,6 +7,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v2
+        - name: Set permissions for reports directory
+          run: chmod -R 777 /github/workspace/reports
         - name: Execute tests
           uses: joonvena/robotframework-docker-action@v0.1
           env:
