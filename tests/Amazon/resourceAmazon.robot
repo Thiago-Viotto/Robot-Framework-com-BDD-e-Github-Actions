@@ -20,8 +20,8 @@ Abre o browser
 que estou na home page da Amazon.com.br
     Go To    url=${URL}
     Maximize Browser Window
-    Title Should Be    Amazon.com.br | Tudo pra você, de A a Z.
     Wait Until Page Contains Element    ${ELETRONICS_MENU}
+    Title Should Be    Amazon.com.br | Tudo pra você, de A a Z.
 
 Usuário entra no menu "Eletrônicos"
     Click Element    ${ELETRONICS_MENU}
