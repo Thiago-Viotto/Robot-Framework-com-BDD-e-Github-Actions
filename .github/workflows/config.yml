@@ -10,8 +10,7 @@ jobs:
         - name: Execute tests
           uses: joonvena/robotframework-docker-action@v1.0
           with:
-            tests-directory: tests/
-            requirements: requirements.txt
+            robot_tests_dir: tests/
         - name: Upload test results
           uses: actions/upload-artifact@v1
           if: always()
