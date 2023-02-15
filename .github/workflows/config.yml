@@ -1,13 +1,31 @@
-name: Robot Framework
+name: Testes
 
 on: [push]
 
 jobs:
-    robot_test:
-      runs-on: ubuntu-latest
-      name: Run Robot Framework Tests
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-        - name: Robot Framework
-          uses: joonvena/robotframework-docker-action@v1.0
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Install Chromedriver
+      run: |
+        CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
+        wget -q "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -O /tmp/chromedriver.zip
+        unzip /tmp/chromedriver.zip -d /usr/local/bin/
+        rm /tmp/chromedriver.zip
+
+    - name: Run tests
+      run: |
+        robot --variable EXECUTABLE_PATH:/usr/local/bin/chromedriver tests/
