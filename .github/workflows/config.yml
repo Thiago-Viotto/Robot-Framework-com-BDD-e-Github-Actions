@@ -7,14 +7,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v2
+        - name: Set permissions for reports directory
+          run: chmod -R 777 ${{ github.workspace }}/reports
+        - name: Execute tests
+          uses: joonvena/robotframework-docker-action@v0.1
           env:
             BROWSER: chrome
             ROBOT_TESTS_DIR: ${{ github.workspace }}/tests
             ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
-        - name: Set permissions for reports directory
-          run: chmod -R 777 $ROBOT_REPORTS_DIR
-        - name: Execute tests
-          uses: joonvena/robotframework-docker-action@v0.1
         - name: Upload test results
           uses: actions/upload-artifact@v1
           if: always()
