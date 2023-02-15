@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    resource_api_testing_users.robot
+Resource    resource_api_testing.robot
 
 *** Test Cases ***
 Scenario 01: Add a new user with successfull
