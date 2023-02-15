@@ -1,9 +1,6 @@
 *** Settings ***
 Resource    resource_api_testing_users.robot
 
-*** Variables ***
-
-
 *** Test Cases ***
 Scenario 01: Add a new user with successfull
     Given add a new user
@@ -21,3 +18,9 @@ Scenario 03: Find a user with id
     When add a created user in ServerRest    email=${EMAIL_TESTING}    expected_status_code=201
     And query user data
     Then check returned data
+
+Scenario 04: Login with new created user
+    Given add a new user
+    When add a created user in ServerRest    email=${EMAIL_TESTING}    expected_status_code=201
+    And login with new user
+    Then check if login was successfull
