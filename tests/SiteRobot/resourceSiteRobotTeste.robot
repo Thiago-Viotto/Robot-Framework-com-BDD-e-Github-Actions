@@ -4,7 +4,7 @@ Library    SeleniumLibrary
 *** Variables ***
 ${URL}    http://robotizandotestes.blogspot.com
 ${BROWSER}    chrome
-${EXECUTABLE_PATH}    C:\Program Files\chrome driver\chromedriver
+${EXECUTABLE_PATH}    ..\..\chromedriver
 ${BTN_PESQUISAR}    class:search-expand
 ${INPUT_PESQUISAR}    name=q
 ${BTN_PESQUISAR_INPUT}    css=input.search-action.flat-button

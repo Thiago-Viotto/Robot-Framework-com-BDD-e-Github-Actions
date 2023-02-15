@@ -5,7 +5,7 @@ Resource    ../helpers/utils.robot
 *** Variables ***
 ${URL}    https://www.amazon.com.br
 ${BROWSER}    chrome
-${EXECUTABLE_PATH}    C:\Program Files\chrome driver\chromedriver
+${EXECUTABLE_PATH}    ..\..\chromedriver
 ${ELETRONICS_HEADER}    xpath://h1[contains(.,'Eletrônicos e Tecnologia')]
 ${ELETRONICS_MENU}    xpath://a[@href='/Eletronicos-e-Tecnologia/b/?ie=UTF8&node=16209062011&ref_=nav_cs_electronics'][contains(.,'Eletrônicos')]
 ${LABEL_CART_ADDED}    xpath://span[@class='a-size-medium-plus a-color-base sw-atc-text a-text-bold'][contains(.,'Adicionado ao carrinho')]
