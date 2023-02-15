@@ -6,29 +6,33 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-steps:
-  - name: Set up Python
-    uses: actions/setup-python@v2
-    with:
-      python-version: 3.8
+    steps:
+    - uses: actions/checkout@v2
 
-  - name: Install dependencies
-    run: |
-      sudo apt-get update
-      sudo apt-get install -y wget unzip libgconf-2-4
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        sudo apt-get update
+        sudo apt-get install -y wget unzip libgconf-2-4
 
       # Install Google Chrome
-      wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-      echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-      sudo apt-get update
-      sudo apt-get install -y google-chrome-stable
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
 
       # Install Chromedriver
-      LATEST_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-      wget -q "https://chromedriver.storage.googleapis.com/$LATEST_VERSION/chromedriver_linux64.zip" -O /tmp/chromedriver.zip
-      sudo unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
-      sudo chmod +x /usr/local/bin/chromedriver
+        LATEST_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        wget -q "https://chromedriver.storage.googleapis.com/$LATEST_VERSION/chromedriver_linux64.zip" -O /tmp/chromedriver.zip
+        sudo unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
+        sudo chmod +x /usr/local/bin/chromedriver
 
-  - name: Run Robot Framework tests
-    run: robot --variable EXECUTABLE_PATH:/usr/local/bin/chromedriver tests/
-
+    - name: Run tests
+      run: |
+        robot --variable EXECUTABLE_PATH:/usr/local/bin/chromedriver tests/
