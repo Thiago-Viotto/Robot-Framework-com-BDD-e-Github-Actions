@@ -15,6 +15,7 @@ ${LABEL_NONE_CART}    xpath://h1[@class='a-spacing-mini a-spacing-top-base'][con
 *** Keywords ***
 Abre o browser
     Open Browser    url=${URL}    browser=${BROWSER}
+    Sleep    5
 
 que estou na home page da Amazon.com.br
     Go To    url=${URL}
