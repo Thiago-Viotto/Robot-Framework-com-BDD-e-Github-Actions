@@ -22,7 +22,7 @@ add a created user in ServerRest
     ...        password=teste
     ...        administrador=true
     create session in ServerRest
-    ${response}    POST On Session    alias=add_user_session    url=/usuarios    json=${body}    expected_status=${expected_status_code}
+    ${response}    POST On Session    alias=add_session    url=/usuarios    json=${body}    expected_status=${expected_status_code}
 
     IF  ${response.status_code} == 201
         Set Test Variable    ${USER_ID}    ${response.json()["_id"]}
@@ -47,10 +47,10 @@ create session in ServerRest
     ${headers}    Create Dictionary
     ...        accept=application/json
     ...        Content-Type=application/json
-    Create Session    alias=add_user_session    url=${API_URL}    headers=${headers}
+    Create Session    alias=add_session    url=${API_URL}    headers=${headers}
 
 query user data
-    ${response_query}    GET On Session    alias=add_user_session    url=/usuarios/${USER_ID}
+    ${response_query}    GET On Session    alias=add_session    url=/usuarios/${USER_ID}
     Set Test Variable    ${RESP_QUERY}    ${response_query.json()}
 
 check returned data
@@ -60,3 +60,31 @@ check returned data
     Dictionary Should Contain Item    ${RESP_QUERY}    password         teste
     Dictionary Should Contain Item    ${RESP_QUERY}    administrador    true
     Dictionary Should Contain Item    ${RESP_QUERY}    _id              ${USER_ID}
+
+login with new user
+    query user data
+    ${body}    Create Dictionary
+    ...        email=${RESP_QUERY["email"]}
+    ...        password=${RESP_QUERY["password"]}
+    create session in ServerRest
+    ${response}    POST On Session    alias=add_session    url=/login    json=${body}
+    Set Test Variable    ${RESPONSE_SUCCESSFULL_LOGIN}    ${response.json()}
+
+check if login was successfull
+    Log    ${RESPONSE_SUCCESSFULL_LOGIN}
+    Dictionary Should Contain Item    ${RESPONSE_SUCCESSFULL_LOGIN}    message    Login realizado com sucesso
+    Dictionary Should Contain Key    ${RESPONSE_SUCCESSFULL_LOGIN}    authorization
+
+login with invalid user
+    query user data
+    ${body}    Create Dictionary
+    ...        email=${RESP_QUERY["email"]}
+    ...        password=222
+    create session in ServerRest
+    ${response}    POST On Session    alias=add_session    url=/login    json=${body}    expected_status=401
+    Set Test Variable    ${RESPONSE_INVALID_LOGIN}    ${response.json()}
+
+check if login was not successfull
+    Log    ${RESPONSE_INVALID_LOGIN}
+    Dictionary Should Contain Item    ${RESPONSE_INVALID_LOGIN}    message    Email e/ou senha inválidos
+    Dictionary Should Not Contain Key    ${RESPONSE_INVALID_LOGIN}    authorization
