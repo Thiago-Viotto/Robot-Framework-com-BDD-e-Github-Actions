@@ -4,6 +4,7 @@ Library    SeleniumLibrary
 *** Variables ***
 ${URL}    http://robotizandotestes.blogspot.com
 ${BROWSER}    chrome
+${EXECUTABLE_PATH}    ${{ github.workspace }}/chromedriver.exe
 ${BTN_PESQUISAR}    class:search-expand
 ${INPUT_PESQUISAR}    name=q
 ${BTN_PESQUISAR_INPUT}    css=input.search-action.flat-button
@@ -16,7 +17,7 @@ ${CLAUBER_LIMA}    xpath=//*[contains(text(),'Clauber Lima')]
 
 *** Keywords ***
 Acessar a página do blog
-    Open Browser    url=${URL}    browser=${BROWSER}   
+    Open Browser    url=${URL}    browser=${BROWSER}    executable_path=${EXECUTABLE_PATH}
     Title Should Be    Robotizando Testes
 
 Usuário quer pesquisar por um post "${TEXTO_PESQUISA}"
