@@ -5,7 +5,6 @@ Resource    ../helpers/utils.robot
 *** Variables ***
 ${URL}    https://www.amazon.com.br
 ${BROWSER}    chrome
-${EXECUTABLE_PATH}    ${GITHUB_WORKSPACE}/chromedriver.exe
 ${ELETRONICS_HEADER}    xpath://h1[contains(.,'Eletrônicos e Tecnologia')]
 ${ELETRONICS_MENU}    xpath://a[@href='/Eletronicos-e-Tecnologia/b/?ie=UTF8&node=16209062011&ref_=nav_cs_electronics'][contains(.,'Eletrônicos')]
 ${LABEL_CART_ADDED}    xpath://span[@class='a-size-medium-plus a-color-base sw-atc-text a-text-bold'][contains(.,'Adicionado ao carrinho')]
@@ -15,7 +14,7 @@ ${LABEL_NONE_CART}    xpath://h1[@class='a-spacing-mini a-spacing-top-base'][con
 
 *** Keywords ***
 Abre o browser
-    Open Browser    url=${URL}    browser=${BROWSER}    executable_path=${EXECUTABLE_PATH}
+    Open Browser    url=${URL}    browser=${BROWSER}   
 
 que estou na home page da Amazon.com.br
     Go To    url=${URL}
