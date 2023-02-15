@@ -24,3 +24,9 @@ Scenario 04: Login with new created user
     When add a created user in ServerRest    email=${EMAIL_TESTING}    expected_status_code=201
     And login with new user
     Then check if login was successfull
+
+Scenario 05: Login with invalid user
+    Given add a new user
+    When add a created user in ServerRest    email=${EMAIL_TESTING}    expected_status_code=201
+    And login with invalid user
+    Then check if login was not successfull

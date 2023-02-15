@@ -68,8 +68,23 @@ login with new user
     ...        password=${RESP_QUERY["password"]}
     create session in ServerRest
     ${response}    POST On Session    alias=add_session    url=/login    json=${body}
-    Set Test Variable    ${RESPONSE}    ${response.json()}
+    Set Test Variable    ${RESPONSE_SUCCESSFULL_LOGIN}    ${response.json()}
 
 check if login was successfull
-    Log    ${RESPONSE}
-    Dictionary Should Contain Item    ${RESPONSE}    message    Login realizado com sucesso
+    Log    ${RESPONSE_SUCCESSFULL_LOGIN}
+    Dictionary Should Contain Item    ${RESPONSE_SUCCESSFULL_LOGIN}    message    Login realizado com sucesso
+    Dictionary Should Contain Key    ${RESPONSE_SUCCESSFULL_LOGIN}    authorization
+
+login with invalid user
+    query user data
+    ${body}    Create Dictionary
+    ...        email=${RESP_QUERY["email"]}
+    ...        password=222
+    create session in ServerRest
+    ${response}    POST On Session    alias=add_session    url=/login    json=${body}    expected_status=401
+    Set Test Variable    ${RESPONSE_INVALID_LOGIN}    ${response.json()}
+
+check if login was not successfull
+    Log    ${RESPONSE_INVALID_LOGIN}
+    Dictionary Should Contain Item    ${RESPONSE_INVALID_LOGIN}    message    Email e/ou senha inválidos
+    Dictionary Should Not Contain Key    ${RESPONSE_INVALID_LOGIN}    authorization
