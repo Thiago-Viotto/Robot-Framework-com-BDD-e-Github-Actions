@@ -3,27 +3,30 @@ name: Testes de Automação
 on: [push]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout do código-fonte
-      uses: actions/checkout@v2
-
-    - name: Instalar as dependências
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y chromium-browser
-        LATEST=`wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE`
-        wget http://chromedriver.storage.googleapis.com/$LATEST/chromedriver_linux64.zip
-        unzip chromedriver_linux64.zip
-        sudo mv chromedriver /usr/bin/chromedriver
-        sudo chown root:root /usr/bin/chromedriver
-        sudo chmod +x /usr/bin/chromedriver
-        pip install robotframework robotframework-requests robotframework-seleniumlibrary
-
-    - name: Rodar os testes
-      env:
-        ROBOT_SYSLOG_FILE: syslog.txt
-      run: |
-        robot --variable EXECUTABLE_PATH:/usr/bin/chromedriver tests/
+    test:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Execute tests
+          uses: joonvena/robotframework-docker-action@v1.0
+        - name: Upload test results
+          uses: actions/upload-artifact@v1
+          if: always()
+          with:
+            name: reports
+            path: reports
+    
+    generate_report:
+        if: always()
+        needs: [test] 
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Download reports
+          uses: actions/download-artifact@v1
+          with:
+            name: reports
+        - name: Send report to commit
+          uses: joonvena/robotframework-reporter-action@v2.1
+          with:
+            gh_access_token: ${{ secrets.GITHUB_TOKEN }}
