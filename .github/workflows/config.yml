@@ -10,7 +10,6 @@ jobs:
         - name: Execute tests
           uses: joonvena/robotframework-docker-action@v1.0
           with:
-            robot_options: --variable BROWSER:chrome --outputdir /github/workspace/reports --report NONE --log NONE --xunit output.xml /github/workspace/tests
             robot_tests_dir: tests/
             screen_height: 1080
             screen_width: 2560 
