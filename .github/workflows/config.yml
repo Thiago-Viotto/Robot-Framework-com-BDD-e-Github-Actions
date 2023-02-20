@@ -10,7 +10,7 @@ jobs:
         - name: Execute tests
           uses: joonvena/robotframework-docker-action@v1.0
           with:
-            robot_tests_dir: tests/
+            robot_tests_dir: tests/ci_tests
             screen_height: 1080
             screen_width: 2560 
         - name: Upload test results
