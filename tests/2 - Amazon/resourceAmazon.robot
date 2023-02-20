@@ -19,6 +19,7 @@ Abre o browser
 que estou na home page da Amazon.com.br
     Abre o browser
     Maximize Browser Window
+    Wait Until Page Contains Element    ${ELETRONICS_MENU}    timeout=20
     Title Should Be    Amazon.com.br | Tudo pra você, de A a Z.
 
 Usuário entra no menu "Eletrônicos"
