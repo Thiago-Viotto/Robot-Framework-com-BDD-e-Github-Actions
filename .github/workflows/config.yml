@@ -10,9 +10,21 @@ jobs:
         - name: Execute tests
           uses: joonvena/robotframework-docker-action@v1.0
           with:
+            args: -d /github/workspace/reports /github/workspace/tests
             robot_tests_dir: tests/
             screen_height: 1080
             screen_width: 2560 
+        - name: Save screenshots
+          if: always()
+          run: |
+            pip3 install robotframework-seleniumscreenshots
+            robot -d /github/workspace/reports --variable SCREENSHOTS_DIR:/github/workspace/reports/screenshots
+        - name: Upload dos Screenshots
+          uses: actions/upload-artifact@v2
+          if: always()
+          with:
+            name: Screenshots
+            path: /github/workspace/reports/screenshots
         - name: Upload test results
           uses: actions/upload-artifact@v1
           if: always()
