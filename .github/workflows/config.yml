@@ -10,22 +10,10 @@ jobs:
         - name: Execute tests
           uses: joonvena/robotframework-docker-action@v1.0
           with:
-            args: -d /github/workspace/reports /github/workspace/tests
+            arguments: --variable BROWSER:chrome --outputdir /github/workspace/reports --report NONE --log NONE --xunit output.xml /github/workspace/tests
             robot_tests_dir: tests/
             screen_height: 1080
             screen_width: 2560 
-        - name: Salvar Screenshots dos Testes Que Falharam
-          if: always()
-          run: |
-            apt-get update -y && apt-get install -y firefox
-            pip3 install robotframework-seleniumscreenshots
-            robot -d /github/workspace/reports --variable SCREENSHOTS_DIR:/github/workspace/reports/screenshots --pythonpath /usr/local/lib/python3.8/dist-packages:/github/workspace/libs -x xunit:/github/workspace/reports/output.xml -d /github/workspace/reports -v BROWSER:headlessfirefox /tests
-        - name: Upload dos Screenshots
-          uses: actions/upload-artifact@v2
-          if: always()
-          with:
-            name: Screenshots
-            path: /github/workspace/reports/screenshots
         - name: Upload test results
           uses: actions/upload-artifact@v1
           if: always()
