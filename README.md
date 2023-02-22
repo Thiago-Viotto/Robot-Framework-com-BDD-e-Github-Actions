@@ -1,6 +1,9 @@
-# Projeto Pessoal Robot Framework
+# Robot Framework com BDD e Github Actions
  
-Projeto pessoal aplicando o Robot Framework com Selenium e BDD, e testes de API com a Requests Library
+Projeto pessoal aplicando o Robot Framework com Selenium e BDD, testes de API com a Requests Library e integração contínua com Github Actions
+
+Integração contínua com Github Actions
+
 
 Site da Amazon
 ![b2b0fc66-ad52-4fa9-aeed-13ec3e87a94e](https://user-images.githubusercontent.com/30843151/215855049-b043dbb0-e993-43cb-a66a-0f5ee73a163e.gif)
@@ -22,7 +25,7 @@ Testes de API
 - `pip install robotframework-requests`
 
 ## Execução
-- `robot --variable BROWSER:chrome tests/`
+- `robot --variable BROWSER:chrome tests/ci_tests`
 
 ## Contato
 - Email: thiagohenriqueviotto1@gmail.com
