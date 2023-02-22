@@ -3,7 +3,7 @@
 Projeto pessoal aplicando o Robot Framework com Selenium e BDD, testes de API com a Requests Library e integração contínua com Github Actions
 
 Integração contínua com Github Actions
-
+![6381daaa-bbe8-4212-bc4e-40f32126bcdb](https://user-images.githubusercontent.com/30843151/220720694-dcd4ce7f-ea2b-49aa-a078-c8ac5133e828.gif)
 
 Site da Amazon
 ![b2b0fc66-ad52-4fa9-aeed-13ec3e87a94e](https://user-images.githubusercontent.com/30843151/215855049-b043dbb0-e993-43cb-a66a-0f5ee73a163e.gif)
